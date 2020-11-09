@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int score;
-    float maxspeed = 10f;//최대 속도
+    float maxspeed = 20f;//최대 속도
 
     float haxis;
     float vaxis;
