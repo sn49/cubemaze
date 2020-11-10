@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int score;
+    
     float maxspeed = 20f;//최대 속도
 
     float haxis;
@@ -13,14 +13,15 @@ public class Player : MonoBehaviour
 
     Stopwatch moveCheck = new Stopwatch();//움직일수 없게 하는 스톱워치
     float cantmove = 1000;//움직일 수 없는 시간
-    public Stopwatch timer = new Stopwatch();
 
+    Vector3 firstpositoin;
 
     // Start is called before the first frame update
     void Start()
     {
-        score = 0;
-        timer.Start();
+        firstpositoin = transform.position;
+        GameManager.score = 0;
+        GameManager.timer.Start();
     }
 
     // Update is called once per frame
@@ -48,6 +49,8 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        haxis *= 0.9f;
+        vaxis *= 0.9f;
         if (collision.gameObject.CompareTag("StopCube"))
         {
             moveCheck.Start();
@@ -57,8 +60,19 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("GoodCube"))
         {
             //좋은 영향을 주는 거
-            score += 500;
+            GameManager.score += 100;
 
+
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("FinishCube"))
+        {
+
+            //좋은 영향을 주는 거
+            GameManager.timer.Stop();
+
+            print(GameManager.timer.ElapsedMilliseconds);
 
             Destroy(collision.gameObject);
         }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - StopCube
   - GoodCube
+  - PushCube
+  - FinishCube
   layers:
   - Default
   - TransparentFX
