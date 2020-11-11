@@ -8,6 +8,8 @@ TagManager:
   - GoodCube
   - PushCube
   - FinishCube
+  - PointCube
+  - BottomWall
   layers:
   - Default
   - TransparentFX
