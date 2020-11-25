@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moveCheck.IsRunning)//moveCheck 타이머가 작동중이면
+        if (GameManager.stopcase!=0)//moveCheck 타이머가 작동중이면
         {
             //움직이지 못함
             haxis = 0;
@@ -39,9 +39,9 @@ public class Player : MonoBehaviour
             vaxis = Input.GetAxis("Vertical");
         }
 
-        if (moveCheck.ElapsedMilliseconds > 1000)//움직이지 못하는 시간=cantmove변수
+        if (moveCheck.ElapsedMilliseconds > 1000 && GameManager.stopcase==1)//움직이지 못하는 시간=cantmove변수
         {
-            moveCheck.Reset();
+            GameManager.stopcase = 0;
         }
 
         transform.Translate(haxis * maxspeed*Time.deltaTime, 0, vaxis * maxspeed * Time.deltaTime);
@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
         {
             moveCheck.Start();
             Destroy(collision.gameObject);
+            GameManager.stopcase = 1;
         }
 
         if (collision.gameObject.CompareTag("GoodCube"))
