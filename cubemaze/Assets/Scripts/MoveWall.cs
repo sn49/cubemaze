@@ -4,28 +4,37 @@ using UnityEngine;
 
 public class MoveWall : MonoBehaviour
 {
-    public float speed = 5.0f;
-    private float z1, z2;
+    float speed = 5.0f;
+    private float sign = -1;
 
     // Start is called before the first frame update
     void Start()
     {
-        z1 = 0;
-        z2 = speed * Time.deltaTime;
+        //z1 = 0;
+        //z2 = speed * Time.deltaTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(z1, 0, -z2);
+        transform.Translate(0, sign * speed * Time.deltaTime, 0);
+
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("BottomWall"))
         {
-            Debug.Log("dfedfdsfds");
-            speed = 0;
-            z2 *= -1;
+            sign = sign * (-1);
         }
+        if (other.gameObject.CompareTag("TopWall"))
+        {
+            sign = 0;
+            StartCoroutine(DelayCoroutine());
+        }
+    }
+    IEnumerator DelayCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(5f);
+        sign = -1;
     }
 }
