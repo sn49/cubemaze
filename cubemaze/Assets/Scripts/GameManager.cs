@@ -14,11 +14,17 @@ public class GameManager : MonoBehaviour
     public Text timerText;
     public Text stageScoreText;
 
+    public Text answerText;
+    public Text questionText;
+    public GameObject quizPanel;
+
+    public static int stopcase = 0;
     bool clear = false;
     // Start is called before the first frame update
     void Start()
     {
         stageScoreText.text="";
+        quizPanel.SetActive(false);
     }
 
 // Update is called once per frame
@@ -34,6 +40,17 @@ public class GameManager : MonoBehaviour
         {
             scoreText.text = score.ToString();
             timerText.text = (timer.ElapsedMilliseconds / 1000).ToString();
+        }
+
+        if (stopcase == 2&&!quizPanel.activeSelf)
+        {
+            quizPanel.SetActive(true);
+            questionText.text = quiz.question;
+        }
+        else if(stopcase == 0 && quizPanel.activeSelf)
+        {
+            quizPanel.SetActive(false);
+            
         }
     }
 
@@ -79,9 +96,15 @@ public class GameManager : MonoBehaviour
             scorescore = 0;
         }
 
-
+        
 
 
         stageScoreText.text="Your score is...  "+(scorescore+timescore).ToString();
+    }
+
+    public void SubmitClick()
+    {
+        answerText.text = "";
+        answersubmit.SubmitAnswer(answerText.text);
     }
 }
