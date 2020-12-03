@@ -47,10 +47,18 @@ public class Player : MonoBehaviour
         transform.Translate(haxis * maxspeed*Time.deltaTime, 0, vaxis * maxspeed * Time.deltaTime);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Car"))
+        {
+            transform.position = firstpositoin;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        haxis *= 0.9f;
-        vaxis *= 0.9f;
+        haxis *= 0.7f;
+        vaxis *= 0.7f;
         if (collision.gameObject.CompareTag("StopCube"))
         {
             moveCheck.Start();

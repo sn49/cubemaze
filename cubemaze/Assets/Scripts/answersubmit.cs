@@ -23,9 +23,11 @@ public class answersubmit : MonoBehaviour
     {
         print(answer);
         print(quiz.answer.ToString());
+        GameManager.stopcase = 0;
         if (answer.Equals(quiz.answer.ToString()))
         {
-            GameManager.stopcase = 0;
+            GameManager.score += 50;
+            Destroy(GameManager.quizObject);
         }
     }
 }

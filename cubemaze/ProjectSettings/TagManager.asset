@@ -11,6 +11,8 @@ TagManager:
   - PointCube
   - BottomWall
   - TopWall
+  - Car
+  - walls
   layers:
   - Default
   - TransparentFX

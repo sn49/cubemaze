@@ -25,6 +25,7 @@ public class quiz : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameManager.quizObject = gameObject;
             GameManager.stopcase = 2;
             int number1 = Random.Range(0, 250);
             int number2 = Random.Range(0, 150);

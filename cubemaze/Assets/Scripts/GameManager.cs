@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public static int stopcase = 0;
     bool clear = false;
+
+    public static GameObject quizObject;
     // Start is called before the first frame update
     void Start()
     {
