@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if (score >=2200)
+        if (score >= 2200)
         {
             scorescore = 3;
         }
@@ -98,10 +98,10 @@ public class GameManager : MonoBehaviour
             scorescore = 0;
         }
 
-        
 
 
-        stageScoreText.text="Your score is...  "+(scorescore+timescore).ToString();
+
+        stageScoreText.text = $"Your score is...  {scorescore + timescore}/6";
     }
 
     public void SubmitClick()

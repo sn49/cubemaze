@@ -6,7 +6,7 @@ public class SceneChange : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("StageSelect");
     }
     public void ShowExplain()
     {

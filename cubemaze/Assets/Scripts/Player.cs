@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     float vaxis;
 
     Stopwatch moveCheck = new Stopwatch();//움직일수 없게 하는 스톱워치
+    Stopwatch endCheck = new Stopwatch();
     float cantmove = 1000;//움직일 수 없는 시간
 
     Vector3 firstpositoin;
@@ -27,6 +29,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (endCheck.ElapsedMilliseconds > 5000)
+        {
+            GameManager.timer.Reset();
+            SceneManager.LoadScene("MainScene");
+            GameManager.stopcase = 0;
+        }
+
         if (GameManager.stopcase!=0)//moveCheck 타이머가 작동중이면
         {
             //움직이지 못함
@@ -39,7 +48,7 @@ public class Player : MonoBehaviour
             vaxis = Input.GetAxis("Vertical");
         }
 
-        if (moveCheck.ElapsedMilliseconds > 1000 && GameManager.stopcase==1)//움직이지 못하는 시간=cantmove변수
+        if (moveCheck.ElapsedMilliseconds > cantmove && GameManager.stopcase==1)//움직이지 못하는 시간=cantmove변수
         {
             GameManager.stopcase = 0;
         }
@@ -78,9 +87,8 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("FinishCube"))
         {
 
-            //좋은 영향을 주는 거
             GameManager.timer.Stop();
-
+            endCheck.Start();
             print(GameManager.timer.ElapsedMilliseconds);
 
             Destroy(collision.gameObject);
