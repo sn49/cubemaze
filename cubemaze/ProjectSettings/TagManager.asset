@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - StopCube
+  - GoodCube
+  - PushCube
+  - FinishCube
+  - PointCube
+  - BottomWall
+  - TopWall
+  - Car
+  - walls
   layers:
   - Default
   - TransparentFX
